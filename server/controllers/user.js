@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import tryCatch from './utils/tryCatch.js';
+import Room from '../models/Room.js';
 
 export const register = tryCatch(async (req, res) => {
   const { name, email, password } = req.body;
@@ -55,4 +56,18 @@ export const login = tryCatch(async (req, res) => {
     success: true,
     result: { id, name, email: emailLowerCase, photoURL, token },
   });
+});
+
+export const updateProfile = tryCatch(async (req, res) => {
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
+    new: true,
+  });
+  const { _id: id, name, photoURL } = updatedUser;
+
+  await Room.updateMany({ uid: id }, { uName: name, uPhoto: photoURL });
+
+  const token = jwt.sign({ id, name, photoURL }, process.env.JWT_SECRET, {
+    expiresIn: '1h',
+  });
+  res.status(200).json({ success: true, result: { name, photoURL, token } });
 });

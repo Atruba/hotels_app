@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '10mb' }));
 app.use('/user', userRouter);
 app.use('/room', roomRouter);
-app.use('/', (req, res) => res.json({ message: 'Welcome to our API' }));
+app.get('/', (req, res) => res.json({ message: 'Welcome to our API' }));
 app.use((req, res) =>
   res.status(404).json({ success: false, message: 'Not Found' })
 );
@@ -34,7 +34,11 @@ app.use((req, res) =>
 const startServer = async () => {
   try {
     await mongoose.connect(process.env.MONGO_CONNECT);
-    app.listen(port, () => console.log(`Server is listening on port: ${port}`));
+    app
+      .listen(port, () => console.log(`Server is listening on port: ${port}`))
+      .on('error', (e) => {
+        console.log('Error happened: ', e.message);
+      });
   } catch (error) {
     console.log(error);
   }

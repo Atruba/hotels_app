@@ -1,0 +1,17 @@
+/* src/pages/LandingPage.css */
+
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #3b4131; 
+    margin: 0;
+    padding: 0;
+}
+
+.landing-logo {
+    max-width: 100%;
+    max-height: 100%;
+}

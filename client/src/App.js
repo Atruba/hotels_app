@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Loading from './components/Loading';
 import Notification from './components/Notification';
 import Room from './components/rooms/Room';
+import LandingPage from './pages/LandingPage';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Notification />
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<LandingPage />} />
           <Route path="dashboard/*" element={<Dashboard />} />
           <Route path="*" element={<Home />} />
         </Routes>

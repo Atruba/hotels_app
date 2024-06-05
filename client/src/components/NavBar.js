@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <AppBar>
+      <AppBar sx={{ backgroundColor: '#3b4131' }}>
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Box sx={{ mr: 1 }}>
@@ -42,7 +42,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             >
-              You Are Welcome
+              Digital Backpackers Hotels App
             </Typography>
             <Typography
               variant="h6"

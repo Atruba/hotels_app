@@ -12,6 +12,8 @@ import { Brightness4, Brightness7, Home, Menu } from '@mui/icons-material';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SideList from './SideList';
+import Protected from '../../components/protected/Protected';
+import Login from '../../components/user/Login';
 
 const drawerWidth = 240;
 
@@ -23,6 +25,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  backgroundColor: '#3b4131',
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -88,8 +91,11 @@ export default function Dashboard() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <SideList {...{ open, setOpen }} />
+        <Protected>
+          <SideList {...{ open, setOpen }} />
+        </Protected>
       </Box>
+      <Login />
     </ThemeProvider>
   );
 }

@@ -98,3 +98,19 @@ export const getUsers = async (dispatch) => {
     dispatch({ type: 'UPDATE_USERS', payload: result });
   }
 };
+
+export const updateStatus = (updatedFields, userId, dispatch) => {
+  return fetchData(
+    {
+      url: `${url}/updateStatus/${userId}`,
+      method: 'PATCH',
+      body: updatedFields,
+    },
+    dispatch
+  );
+};
+
+export const logout = (dispatch) => {
+  dispatch({ type: 'UPDATE_USER', payload: null });
+  dispatch({ type: 'RESET_ROOM' });
+};

@@ -2,7 +2,6 @@ import fetchData from './utils/fetchData';
 import { v4 as uuidv4 } from 'uuid';
 import uploadFile from '../firebase/uploadFile';
 
-
 const url = process.env.REACT_APP_SERVER_URL + '/user';
 
 export const register = async (user, dispatch) => {
@@ -39,6 +38,7 @@ export const login = async (user, dispatch) => {
 
   dispatch({ type: 'END_LOADING' });
 };
+
 export const updateProfile = async (currentUser, updatedFields, dispatch) => {
   dispatch({ type: 'START_LOADING' });
 
@@ -90,4 +90,11 @@ export const updateProfile = async (currentUser, updatedFields, dispatch) => {
   }
 
   dispatch({ type: 'END_LOADING' });
+};
+
+export const getUsers = async (dispatch) => {
+  const result = await fetchData({ url, method: 'GET' }, dispatch);
+  if (result) {
+    dispatch({ type: 'UPDATE_USERS', payload: result });
+  }
 };

@@ -1,3 +1,4 @@
+
 import deleteImages from './utils/deleteImages';
 import fetchData from './utils/fetchData';
 
@@ -28,10 +29,12 @@ export const createRoom = async (room, currentUser, dispatch) => {
 };
 
 export const getRooms = async (dispatch) => {
+  dispatch({ type: 'START_LOADING' });
   const result = await fetchData({ url, method: 'GET' }, dispatch);
   if (result) {
     dispatch({ type: 'UPDATE_ROOMS', payload: result });
   }
+  dispatch({ type: 'END_LOADING' });
 };
 
 export const deleteRoom = async (room, currentUser, dispatch) => {
@@ -101,7 +104,7 @@ export const clearRoom = (
   updatedRoom = null
 ) => {
   dispatch({ type: 'RESET_ROOM' });
-  // remove from localStorage
+  localStorage.removeItem(currentUser.id);
   if (updatedRoom) {
     deleteImages(images, updatedRoom.uid);
   } else {

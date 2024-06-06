@@ -50,8 +50,15 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              YRW
+              DBH
             </Typography>
+            <Button
+              color="inherit"
+              component="a"
+              href="http://127.0.0.1:5500/index.html"
+            >
+              DB WEBSITE
+            </Button>
             {!currentUser ? (
               <Button
                 color="inherit"

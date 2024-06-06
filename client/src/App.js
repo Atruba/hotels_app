@@ -6,6 +6,7 @@ import Notification from './components/Notification';
 import Room from './components/rooms/Room';
 import LandingPage from './pages/LandingPage';
 
+
 const App = () => {
   return (
     <>
@@ -19,6 +20,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       <Room />
+      
     </>
   );
 };

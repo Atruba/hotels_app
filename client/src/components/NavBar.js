@@ -55,7 +55,7 @@ const NavBar = () => {
             <Button
               color="inherit"
               component="a"
-              href="http://127.0.0.1:5500/index.html"
+              href="https://atruba.github.io/DigitalBackpackers/"
             >
               DB WEBSITE
             </Button>
